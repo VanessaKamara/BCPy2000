@@ -1,0 +1,7 @@
+Metadata-Version: 1.0
+Description: Python plotting package
+Author: John D. Hunter
+Author-Email: jdh2358@gmail.com
+Url: http://matplotlib.sourceforge.net
+Version: 0.99.0
+Name: matplotlib

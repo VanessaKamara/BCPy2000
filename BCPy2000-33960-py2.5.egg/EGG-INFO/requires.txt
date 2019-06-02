@@ -1,0 +1,2 @@
+IPython>=0.8.1
+numpy>=1.3

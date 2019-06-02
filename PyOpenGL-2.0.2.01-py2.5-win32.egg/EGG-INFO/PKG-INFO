@@ -1,0 +1,7 @@
+Metadata-Version: 1.0
+Description: OpenGL bindings for Python
+Url: http://pyopengl.sourceforge.net
+Maintainer-Email: pyopengl-devel@lists.sourceforge.net
+Version: 2.0.2.01
+Maintainer: PyOpenGL SourceForge group
+Name: PyOpenGL

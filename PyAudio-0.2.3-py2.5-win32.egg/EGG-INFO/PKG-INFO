@@ -1,0 +1,6 @@
+Metadata-Version: 1.0
+Description: PortAudio Python Bindings
+Author: Hubert Pham
+Url: http://people.csail.mit.edu/hubert/pyaudio/
+Version: 0.2.3
+Name: PyAudio

@@ -1,0 +1,9 @@
+Metadata-Version: 1.0
+Description: A python implmementation of GNU readline.
+Author: Jorgen Stenarson
+Author-Email: jorgen.stenarson@bostream.nu
+Maintainer-Email: jorgen.stenarson@bostream.nu
+Url: http://ipython.scipy.org/moin/PyReadline/Intro
+Version: 1.5
+Maintainer: Jorgen Stenarson
+Name: pyreadline

@@ -1,0 +1,6 @@
+VisionEgg/win32_vretrace.pyd
+VisionEgg/_draw_in_c.pyd
+VisionEgg/_gl_qt.pyd
+VisionEgg/_vegl.pyd
+VisionEgg/_win32_getrefresh.pyd
+VisionEgg/_win32_maxpriority.pyd

@@ -1,0 +1,4 @@
+_imaging.pyd
+_imagingft.pyd
+_imagingmath.pyd
+_imagingtk.pyd

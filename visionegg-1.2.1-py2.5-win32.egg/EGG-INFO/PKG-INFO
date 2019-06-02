@@ -1,0 +1,47 @@
+Metadata-Version: 1.0
+Name: visionegg
+Version: 1.2.1
+Summary: 2D/3D visual stimulus generation
+Home-page: http://www.visionegg.org/
+Author: Andrew Straw
+Author-email: astraw@users.sourceforge.net
+License: LGPL
+Description: The Vision Egg is a programming library (with demo applications)
+        that uses standard, inexpensive computer graphics cards to produce
+        visual stimuli for vision research experiments.
+        
+        For more information, visit the website at www.visionegg.org
+        
+        Any feedback, questions, or comments, should go to the mailing list at
+        visionegg@freelists.org
+        
+        The Vision Egg is Copyright (c) by its authors and is distributed
+        under the GNU Lesser General Public License (LGPL).  This software
+        comes with absolutely no warranties, either expressed or implied.
+        
+        
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Environment :: Win32 (MS Windows)
+Classifier: Environment :: X11 Applications
+Classifier: Environment :: MacOS X
+Classifier: Environment :: Other Environment
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: GNU Library or Lesser General Public License (LGPL)
+Classifier: Natural Language :: English
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Operating System :: MacOS :: MacOS X
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Operating System :: POSIX :: IRIX
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: C
+Classifier: Topic :: Multimedia :: Graphics
+Classifier: Topic :: Multimedia :: Graphics :: 3D Rendering
+Classifier: Topic :: Multimedia :: Graphics :: Presentation
+Classifier: Topic :: Multimedia :: Video :: Display
+Classifier: Topic :: Scientific/Engineering
+Classifier: Topic :: Scientific/Engineering :: Human Machine Interfaces
+Classifier: Topic :: Scientific/Engineering :: Medical Science Apps.
+Classifier: Topic :: Scientific/Engineering :: Visualization
+Classifier: Topic :: Software Development :: Libraries

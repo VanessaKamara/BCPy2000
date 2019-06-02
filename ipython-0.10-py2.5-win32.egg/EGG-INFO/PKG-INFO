@@ -1,0 +1,7 @@
+Metadata-Version: 1.0
+Description: An interactive computing environment for Python
+Author: The IPython Development Team
+Author-Email: ipython-dev@scipy.org
+Url: http://ipython.scipy.org
+Version: 0.10
+Name: ipython

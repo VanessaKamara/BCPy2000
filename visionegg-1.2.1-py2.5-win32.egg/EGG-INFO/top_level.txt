@@ -1,0 +1,7 @@
+_vegl
+win32_vretrace
+VisionEgg
+_win32_maxpriority
+_win32_getrefresh
+_gl_qt
+_draw_in_c

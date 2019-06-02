@@ -1,0 +1,10 @@
+numpy/linalg/lapack_lite.pyd
+numpy/lib/_compiled_base.pyd
+numpy/random/mtrand.pyd
+numpy/fft/fftpack_lite.pyd
+numpy/numarray/_capi.pyd
+numpy/core/scalarmath.pyd
+numpy/core/multiarray.pyd
+numpy/core/_sort.pyd
+numpy/core/umath.pyd
+numpy/core/umath_tests.pyd

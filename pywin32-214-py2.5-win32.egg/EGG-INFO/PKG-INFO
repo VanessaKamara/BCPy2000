@@ -1,0 +1,7 @@
+Metadata-Version: 1.0
+Description: Python for Window Extensions
+Author: Mark Hammond (et al)
+Author-Email: mhammond@users.sourceforge.net
+Url: http://sourceforge.net/projects/pywin32/
+Version: 214
+Name: pywin32

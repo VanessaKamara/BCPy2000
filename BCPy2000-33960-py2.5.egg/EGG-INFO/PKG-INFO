@@ -1,0 +1,12 @@
+Metadata-Version: 1.1
+Name: BCPy2000
+Version: 33960
+Summary: UNKNOWN
+Home-page: UNKNOWN
+Author: UNKNOWN
+Author-email: UNKNOWN
+License: UNKNOWN
+Description: UNKNOWN
+Platform: UNKNOWN
+Requires: IPython (>=0.8.1)
+Requires: numpy (>=1.3)

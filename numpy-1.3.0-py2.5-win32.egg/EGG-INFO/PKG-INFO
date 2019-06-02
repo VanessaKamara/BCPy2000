@@ -1,0 +1,9 @@
+Metadata-Version: 1.0
+Description: NumPy: array processing for numbers, strings, records, and objects.
+Author: Travis E. Oliphant, et.al.
+Author-Email: oliphant@enthought.com
+Maintainer-Email: numpy-discussion@scipy.org
+Url: http://numpy.scipy.org
+Version: 1.3.0
+Maintainer: NumPy Developers
+Name: numpy
