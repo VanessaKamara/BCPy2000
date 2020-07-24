@@ -34,14 +34,14 @@ class ScreenPositionParameters:
         self.up = (0.0, 1.0, 0.0) # up vector
 
 class CallbackEntry(Tkinter.Entry):
-    def __init__(self,master=None,callback=None,**kw):
-        Tkinter.Entry.__init__(self,master, **kw)
+    def __init__(self,main=None,callback=None,**kw):
+        Tkinter.Entry.__init__(self,main, **kw)
         self.bind('<Return>',callback)
         self.bind('<Tab>',callback)
 
 class ScreenPositionControlFrame(Tkinter.Frame):
-    def __init__(self, master=None, auto_connect=0, server_hostname='', server_port=7766, **kw):
-        Tkinter.Frame.__init__(self,master,**kw)
+    def __init__(self, main=None, auto_connect=0, server_hostname='', server_port=7766, **kw):
+        Tkinter.Frame.__init__(self,main,**kw)
         self.pyro_client = None
         self.entry_width = 10
         self.connected = 0

@@ -54,9 +54,9 @@ def showexception(exc_type, exc_value, traceback_str):
     # private subclass of Tkinter.Frame
     class ShowExceptionFrame(Tkinter.Frame):
         """A window that shows a string and has a quit button."""
-        def __init__(self,master,exc_type, exc_value, traceback_str):
+        def __init__(self,main,exc_type, exc_value, traceback_str):
             VisionEgg.config._Tkinter_used = True
-            Tkinter.Frame.__init__(self,master,borderwidth=20)
+            Tkinter.Frame.__init__(self,main,borderwidth=20)
             title="Vision Egg: exception caught"
             first_str = "An unhandled exception was caught."
             type_value_str = "%s: %s"%(str(exc_type),str(exc_value))
@@ -95,9 +95,9 @@ def showexception(exc_type, exc_value, traceback_str):
 
 class AppWindow(Tkinter.Frame):
     """A GUI Window that can be subclassed for a main application window"""
-    def __init__(self,master=None,idle_func=lambda: None,**cnf):
+    def __init__(self,main=None,idle_func=lambda: None,**cnf):
         VisionEgg.config._Tkinter_used = True
-        Tkinter.Frame.__init__(self,master,**cnf)
+        Tkinter.Frame.__init__(self,main,**cnf)
         self.winfo_toplevel().title('Vision Egg')
 
         self.info_frame = InfoFrame(self)
@@ -111,15 +111,15 @@ class AppWindow(Tkinter.Frame):
         self.after(1,self.idle) # (re)register idle function with Tkinter
 
 class ProgressBar(Tkinter.Frame):
-    def __init__(self, master=None, orientation="horizontal",
+    def __init__(self, main=None, orientation="horizontal",
                  min=0, max=100, width=100, height=18,
                  doLabel=1, fillColor="LightSteelBlue1", background="gray",
                  labelColor="black", labelFont="Helvetica",
                  labelText="", labelFormat="%d%%",
                  value=50, **cnf):
-        Tkinter.Frame.__init__(self,master)
+        Tkinter.Frame.__init__(self,main)
         # preserve various values
-        self.master=master
+        self.main=main
         self.orientation=orientation
         self.min=min
         self.max=max
@@ -188,9 +188,9 @@ class ProgressBar(Tkinter.Frame):
 
 class GraphicsConfigurationWindow(Tkinter.Frame):
     """Graphics Configuration Window"""
-    def __init__(self,master=None,**cnf):
+    def __init__(self,main=None,**cnf):
         VisionEgg.config._Tkinter_used = True
-        Tkinter.Frame.__init__(self,master,**cnf)
+        Tkinter.Frame.__init__(self,main,**cnf)
         self.winfo_toplevel().title('Vision Egg - Graphics configuration')
         self.pack()
 
@@ -679,12 +679,12 @@ class GraphicsConfigurationWindow(Tkinter.Frame):
         self._set_config_values()
         for child in self.children.values():
             child.destroy()
-        Tkinter.Tk.destroy(self.master) # OK, now close myself
+        Tkinter.Tk.destroy(self.main) # OK, now close myself
 
 class InfoFrame(Tkinter.Frame):
-    def __init__(self,master=None,**cnf):
+    def __init__(self,main=None,**cnf):
         VisionEgg.config._Tkinter_used = True
-        Tkinter.Frame.__init__(self,master,**cnf)
+        Tkinter.Frame.__init__(self,main,**cnf)
 
         Tkinter.Label(self,text="Vision Egg information:").pack()
         self.sub_frame = Tkinter.Frame(self,relief=Tkinter.GROOVE)
@@ -719,7 +719,7 @@ class GetKeypressDialog(ToplevelDialog):
     """Open a dialog box which returns when a valid key is pressed.
 
     Arguments are:
-    master - a Tkinter widget (defaults to None)
+    main - a Tkinter widget (defaults to None)
     title - a string for the title bar of the widget
     text - a string to display as the text in the body of the dialog
     key_list - a list of acceptable keys, e.g. ['q','1','2','<Return>']
@@ -730,7 +730,7 @@ class GetKeypressDialog(ToplevelDialog):
 
     The implementation is somewhat obscure because a new Tk/Tcl
     interpreter may be created if this Dialog is called with no
-    master widget."""
+    main widget."""
     def __init__(self,
                  title="Press a key",
                  text="Press a key",

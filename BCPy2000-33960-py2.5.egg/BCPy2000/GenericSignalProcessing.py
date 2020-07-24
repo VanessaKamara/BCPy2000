@@ -86,11 +86,11 @@ class BciGenericSignalProcessing(Core.BciCore):
 
 	def _Initialize(self, in_signal_dim, out_signal_dim):
 		super(BciGenericSignalProcessing, self)._Initialize(in_signal_dim, out_signal_dim)    # superclass
-		self._slave = self.states.read_only = (int(self.params['EnslavePython']) != 0)
-		if self._slave:
+		self._subordinate = self.states.read_only = (int(self.params['EnsubordinatePython']) != 0)
+		if self._subordinate:
 			print
 			print
-			print "The signal processing module is running in \"slave\" mode:"
+			print "The signal processing module is running in \"subordinate\" mode:"
 			print "state variables will not be writeable from this module."
 			print
 

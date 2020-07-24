@@ -652,7 +652,7 @@ class PolyCollection(Collection):
 
         *sizes* is *None* (default) or a sequence of floats that
         scale the corresponding *verts_i*.  The scaling is applied
-        before the Artist master transform; if the latter is an identity
+        before the Artist main transform; if the latter is an identity
         transform, then the overall scaling is such that if
         *verts_i* specify a unit square, then *sizes_i* is the area
         of that square in points^2.

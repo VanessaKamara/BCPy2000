@@ -77,7 +77,7 @@ class BciSource(BciGenericSource):
 		try: self.stream = bcistream(fn)
 		except Exception, e: raise PlaybackError(str(e))
 		self.blocksize = int(self.params['SampleBlockSize'])
-		self.master = int(self.params['EnslavePython']) != 0
+		self.main = int(self.params['EnsubordinatePython']) != 0
 		nch = int(self.params['SourceCh'])
 		pbnch = self.stream.channels()
 		if nch != pbnch:
@@ -142,7 +142,7 @@ class BciSource(BciGenericSource):
 		if self.stream.tell() >= self.stream.samples():
 			self.states['SignalStopRun'] = 1
 		
-		if self.master:
+		if self.main:
 			for k in self.states.keys():
 				if not k in ('Running', 'Recording', 'AppStartTime', 'StimulusTime', 'SourceTime') and states.has_key(k):
 					self.states[k] = int(numpy.asarray(states[k]).flat[-1])

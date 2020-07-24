@@ -2549,7 +2549,7 @@ def _initialize(g):
             g[name] = getattr(_manager, name)
 _initialize(globals())
 
-# Prepare the master working set and make the ``require()`` API available
+# Prepare the main working set and make the ``require()`` API available
 working_set = WorkingSet()
 try:
     # Does the main program list any requirements?

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 # 
-#   $Id: MasterVolume.py 3326 2011-06-17 23:56:38Z jhill $
+#   $Id: MainVolume.py 3326 2011-06-17 23:56:38Z jhill $
 #   
 #   This file is part of the BCPy2000 framework, a Python framework for
 #   implementing modules that run on top of the BCI2000 <http://bci2000.org/>
@@ -27,10 +27,10 @@
 
 # adapted from a mail.python.org post by Ray Schumacher
 
-__all__ = ['GetMasterVolume', 'SetMasterVolume']
+__all__ = ['GetMainVolume', 'SetMainVolume']
 
-GetMasterVolume = None
-SetMasterVolume = None
+GetMainVolume = None
+SetMainVolume = None
 
 import platform
 if platform.system().lower() == 'windows': 
@@ -59,7 +59,7 @@ if platform.system().lower() == 'windows':
 			('paDetails',      ctypes.POINTER(ctypes.c_uint32)),
 		]
 	
-	def SetMasterVolume(volume, channel=SPEAKER_LINE_FADER_ID):
+	def SetMainVolume(volume, channel=SPEAKER_LINE_FADER_ID):
 		volume = min(1.0, max(0.0, volume))
 		volume = int( 0.5 + MINIMUM_VOLUME + (MAXIMUM_VOLUME - MINIMUM_VOLUME) * volume )
 		
@@ -75,9 +75,9 @@ if platform.system().lower() == 'windows':
 			ctypes.byref(s),
 			MIXER_OBJECTF_MIXER,
 		)
-		if ret != 0: raise WindowsError, "Error %d while setting master volume" % ret
+		if ret != 0: raise WindowsError, "Error %d while setting main volume" % ret
 			
-	def GetMasterVolume(channel=SPEAKER_LINE_FADER_ID):
+	def GetMainVolume(channel=SPEAKER_LINE_FADER_ID):
 		s = MIXERCONTROLDETAILS(
 			ctypes.sizeof(MIXERCONTROLDETAILS),
 			channel,
@@ -94,5 +94,5 @@ if platform.system().lower() == 'windows':
 		volume = s.paDetails.contents.value
 		return (float(volume) - MINIMUM_VOLUME) / (MAXIMUM_VOLUME - MINIMUM_VOLUME)
 
-if SetMasterVolume == None:
-	print __name__,'module could not find an implementation for SetMasterVolume---only supported for Win32 at the moment'
+if SetMainVolume == None:
+	print __name__,'module could not find an implementation for SetMainVolume---only supported for Win32 at the moment'

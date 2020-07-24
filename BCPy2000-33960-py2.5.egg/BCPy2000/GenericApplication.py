@@ -187,11 +187,11 @@ class BciGenericApplication(Core.BciCore):
 
 	def _Initialize(self, in_signal_props, out_signal_props):
 		super(BciGenericApplication, self)._Initialize(in_signal_props, out_signal_props)  # superclass		
-		self._slave = self.states.read_only = (int(self.params['EnslavePython']) != 0)
-		if self._slave:
+		self._subordinate = self.states.read_only = (int(self.params['EnsubordinatePython']) != 0)
+		if self._subordinate:
 			print
 			print
-			print "The application module is running in \"slave\" mode:"
+			print "The application module is running in \"subordinate\" mode:"
 			print "state variables will not be writeable from this module."
 			print "NB: the application will not replay its previous behaviour"
 			print "exactly unless a number of criteria are met.  See the"
@@ -240,7 +240,7 @@ class BciGenericApplication(Core.BciCore):
 			th.post('go', wait=True)
 		
 		# playback support
-		self._slave_memory = None
+		self._subordinate_memory = None
 		if 'SignalStopRun' in self.states: self.states.__setitem__('SignalStopRun', 0, 'really')
 		if self._optimize_process_priority: PrecisionTiming.SetProcessPriority(3)
 		
@@ -274,19 +274,19 @@ class BciGenericApplication(Core.BciCore):
 		self._store_out_signal(out_signal, fallback_signal)
 
 		# playback support
-		if self._slave:
-			# Even if enslaved, only the app module can stop a run cleanly.
+		if self._subordinate:
+			# Even if ensubordinated, only the app module can stop a run cleanly.
 			# So, detect and respond to the special state 'SignalStopRun' if it exists.
 			if self.states.get('SignalStopRun', 0): self.states.__setitem__('Running', 0, 'really')
 			# Handle phase transitions
 			pp,eo = self.states['PresentationPhase'],self.states['EventOffset']
-			if self._slave_memory == None: change = False
-			elif pp != self._slave_memory['pp']: change = True
+			if self._subordinate_memory == None: change = False
+			elif pp != self._subordinate_memory['pp']: change = True
 			elif eo == 0: change = False
-			elif eo != self._slave_memory['eo']: change = True
+			elif eo != self._subordinate_memory['eo']: change = True
 			else: change = False
 			if change: self._really_change_phase(self._phasedefs['bynumber'][pp]['name'])
-			self._slave_memory = {'pp':pp, 'eo':eo}
+			self._subordinate_memory = {'pp':pp, 'eo':eo}
 
 		self._lock.release('Process')
 		return self.out_signal
@@ -621,7 +621,7 @@ class BciGenericApplication(Core.BciCore):
 				self.states['PresentationPhase'] = rec['id']
 				elapsed = self.since('transition', timestamp=t)
 				self.remember('transition', timestamp=t)
-				if self._slave: self.last['transition']['packet'] -= 1
+				if self._subordinate: self.last['transition']['packet'] -= 1
 				#self.debug('transition', from_phase=previous_phase, to_phase=self.current_presentation_phase, after=elapsed['msec'], pp=self.states['PresentationPhase'], eo=self.states['EventOffset'])
 				self.Transition(self.current_presentation_phase)
 				if elapsed['packets'] == 0 and previous_phase != None:
@@ -635,7 +635,7 @@ class BciGenericApplication(Core.BciCore):
 				self._phase_must_change = False
 				while not self._phase_must_change:
 					if not self.states['Running'] or mythread.read('stop'): break
-					if duration != None and next != None and not self._slave:
+					if duration != None and next != None and not self._subordinate:
 						elapsed = self.since('transition')
 						overhead = 2
 						if elapsed['msec'] >= duration - overhead: self.change_phase(next)
@@ -1017,11 +1017,11 @@ class BciGenericApplication(Core.BciCore):
 		already called it explicitly. 
 		"""###
 		try:
-			from WavTools.MasterVolume import GetMasterVolume
-			try:    sysvol = GetMasterVolume(channel=0)
-			except: sysvol = GetMasterVolume(channel=1)
+			from WavTools.MainVolume import GetMainVolume
+			try:    sysvol = GetMainVolume(channel=0)
+			except: sysvol = GetMainVolume(channel=1)
 		except:
-			print "failed to get master volume and install master volume handlers"
+			print "failed to get main volume and install main volume handlers"
 		else:
 			if between == None: between = sysvol
 			self.add_callback('StartRun', self.volume, (during,))
@@ -1031,20 +1031,20 @@ class BciGenericApplication(Core.BciCore):
 	
 	def volume(self, volume):
 		"""
-		Use the WavTools.MasterVolume module to set the system's master 
+		Use the WavTools.MainVolume module to set the system's main 
 		volume to the specified level. By default, this is called during
 		StartRun to turn the volume up to maximum, and during StopRun
 		to put it back to what it was during initialization.
 		"""###
 		try:
-			from WavTools.MasterVolume import SetMasterVolume
+			from WavTools.MainVolume import SetMainVolume
 		except:
 			return
 		#print "vol", volume
 		try:
-			SetMasterVolume(volume, channel=0)
+			SetMainVolume(volume, channel=0)
 		except:
-			SetMasterVolume(volume, channel=1)
+			SetMainVolume(volume, channel=1)
 		
 	#############################################################
 
@@ -1287,7 +1287,7 @@ class BciGenericApplication(Core.BciCore):
 		This is an API method which immediately, manually changes the
 		presentation phase. The target phase is specified by name.
 		"""###
-		if not self._slave: self._really_change_phase(phasename)
+		if not self._subordinate: self._really_change_phase(phasename)
 			
 	#############################################################
 

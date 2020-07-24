@@ -243,7 +243,7 @@ class NoseTester(object):
 
         # reset doctest state on every run
         import doctest
-        doctest.master = None
+        doctest.main = None
 
         argv, plugins = self.prepare_test_args(label, verbose, extra_argv,
                                                doctests, coverage)

@@ -285,13 +285,13 @@ class BaseQuery:
 		Returns the formatted current values for the Query
 		'''
 		if self._base: # we are currently open, don't change this
-			return self.collectdataslave(format)
+			return self.collectdatasubordinate(format)
 		else: # need to open and then close the _base, should be used by one-offs and elements tracking application instances
 			self.open() # will raise QueryError if couldn't open the query
-			temp = self.collectdataslave(format)
+			temp = self.collectdatasubordinate(format)
 			self.close() # will always close
 			return temp
-	def collectdataslave(self,format = win32pdh.PDH_FMT_LONG):
+	def collectdatasubordinate(self,format = win32pdh.PDH_FMT_LONG):
 		'''
 		### Not a public method
 		Called only when the Query is known to be open, runs over
@@ -474,14 +474,14 @@ class Query(BaseQuery):
 			query.curpaths
 		'''
 		self.collectdatawhile_active = 1
-		thread.start_new_thread(self.collectdatawhile_slave,(period,))
+		thread.start_new_thread(self.collectdatawhile_subordinate,(period,))
 	def collectdatawhile_stop(self):
 		'''
-		Signals the collectdatawhile slave thread to stop collecting data
+		Signals the collectdatawhile subordinate thread to stop collecting data
 		on the next logging iteration.
 		'''
 		self.collectdatawhile_active = 0
-	def collectdatawhile_slave(self, period):
+	def collectdatawhile_subordinate(self, period):
 		'''
 		### Not a public function
 		Does the threaded work of collecting the data and storing it

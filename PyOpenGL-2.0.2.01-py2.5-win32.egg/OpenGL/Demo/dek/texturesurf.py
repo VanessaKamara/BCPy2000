@@ -53,7 +53,7 @@ class Surface:
 		self.QuitButton.pack({'side':'top'})
 
 	def SetupOpenGL(self):
-		self.ogl = Opengl(master=self.OglFrame, width = 500, height = 500, double = 1, depth = 1)
+		self.ogl = Opengl(main=self.OglFrame, width = 500, height = 500, double = 1, depth = 1)
 		self.ogl.pack(side = 'top', expand = 1, fill = 'both')
 		self.ogl.set_centerpoint(0, 0, 0)
 		self.ogl.redraw = self.Display

@@ -190,7 +190,7 @@ class BciGenericSource(Core.BciCore):
 		not affect systems which run on real clocks, such as the
 		BCPy2000 application module's "phase machine".  In order to
 		take control of the phase machine, you would have to set the
-		EnslavePython parameter: then you can precipitate phase
+		EnsubordinatePython parameter: then you can precipitate phase
 		transitions by setting the numerical value of
 		self.states['PresentationPhase'] from the source module.
 		This is how the BCPy2000 "PlaybackSignalSource" module

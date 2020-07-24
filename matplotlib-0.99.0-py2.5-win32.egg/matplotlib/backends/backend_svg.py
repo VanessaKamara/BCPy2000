@@ -262,7 +262,7 @@ class RendererSVG(RendererBase):
                 self._svgwriter.write ('<use style="%s" %s/>\n' % (style, details))
         write('</g>')
 
-    def draw_path_collection(self, master_transform, cliprect, clippath,
+    def draw_path_collection(self, main_transform, cliprect, clippath,
                              clippath_trans, paths, all_transforms, offsets,
                              offsetTrans, facecolors, edgecolors, linewidths,
                              linestyles, antialiaseds, urls):
@@ -271,7 +271,7 @@ class RendererSVG(RendererBase):
         path_codes = []
         write('<defs>\n')
         for i, (path, transform) in enumerate(self._iter_collection_raw_paths(
-            master_transform, paths, all_transforms)):
+            main_transform, paths, all_transforms)):
             transform = Affine2D(transform.get_matrix()).scale(1.0, -1.0)
             d = self._convert_path(path, transform)
             name = 'coll%x_%x_%s' % (self._path_collection_id, i,
