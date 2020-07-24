@@ -24,9 +24,9 @@ class GridMetaParameters:
 
 class GridControlFrame(client_utils.StimulusControlFrame):
     title = "Grid for 3D calibration"
-    def __init__(self, master=None, suppress_go_buttons=0,**kw):
+    def __init__(self, main=None, suppress_go_buttons=0,**kw):
         client_utils.StimulusControlFrame.__init__(self,
-                                                   master,
+                                                   main,
                                                    suppress_go_buttons,
                                                    GridControlFrame.title,
                                                    GridMetaParameters,

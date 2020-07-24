@@ -17,12 +17,12 @@ import VisionEgg.PyroClient
 
 class StimulusControlFrame(Tkinter.Frame):
     def __init__(self,
-                 master=None,
+                 main=None,
                  suppress_go_buttons=0,
                  title="Stimulus Control",
                  meta_params_class=None,
                  **kw):
-        Tkinter.Frame.__init__(self,master,**kw)
+        Tkinter.Frame.__init__(self,main,**kw)
         self.pyro_client = None
         self.entry_width = 10
         self.connected = 0
@@ -72,12 +72,12 @@ class StimulusControlFrame(Tkinter.Frame):
         if not suppress_go_buttons:
             Tkinter.Button(self,text="Begin Trial",command=self.go).pack()#expand=Tkinter.YES,fill=Tkinter.BOTH)
 
-    def make_callback_entry(self, master=None, **kw):
+    def make_callback_entry(self, main=None, **kw):
         if 'width' not in kw.keys():
             kw['width'] = self.entry_width
-        if master==None:
-            master=self.param_frame
-        e = Tkinter.Entry(master,**kw)
+        if main==None:
+            main=self.param_frame
+        e = Tkinter.Entry(main,**kw)
         e.bind('<Return>',self.send_values)
         e.bind('<Tab>',self.send_values)
         return e

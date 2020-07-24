@@ -237,7 +237,7 @@ SUCH DAMAGES.
 		self._threads = {}
 		self._ipshell = None
 		self._shell_running = False
-		self._slave = False
+		self._subordinate = False
 		self._error_info = (None,None,None)
 		self._error_reported = False
 		self._writeable_params = []
@@ -461,7 +461,7 @@ SUCH DAMAGES.
 		params = [
 			"Source:Signal%20Properties:DataIOFilter list ReferenceChannelName= 0 % % a z // list of labels for reference channel or channels",
 			"Source:Signal%20Properties:DataIOFilter list GroundChannelName= 0 % % a z // label of the ground channel",
-			"Source:Playback int EnslavePython= 0 0 0 1 // force BCPy2000 modules to follow states supplied by the source module without being able to change them (boolean)",
+			"Source:Playback int EnsubordinatePython= 0 0 0 1 // force BCPy2000 modules to follow states supplied by the source module without being able to change them (boolean)",
 		]
 		states = [
 		]
@@ -471,7 +471,7 @@ SUCH DAMAGES.
 			
 	def _Halt(self):
 		if self.verbose: print "calling Halt hook"
-		self._slave = self.states.read_only = False
+		self._subordinate = self.states.read_only = False
 
 		th = self._threads.get('share')
 		if th != None:

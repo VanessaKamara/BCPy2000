@@ -36,9 +36,9 @@ class FlatGratingMetaParameters:
 
 class FlatGratingControlFrame(client_utils.StimulusControlFrame):
     title = "Grating (2D) Experiment"
-    def __init__(self, master=None, suppress_go_buttons=0,**kw):
+    def __init__(self, main=None, suppress_go_buttons=0,**kw):
         client_utils.StimulusControlFrame.__init__(self,
-                                                   master,
+                                                   main,
                                                    suppress_go_buttons,
                                                    FlatGratingControlFrame.title,
                                                    FlatGratingMetaParameters,

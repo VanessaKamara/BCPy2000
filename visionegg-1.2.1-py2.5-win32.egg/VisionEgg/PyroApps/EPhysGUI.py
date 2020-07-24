@@ -63,10 +63,10 @@ class ContainedObjectBase:
     header = "unknown parameters"
 
 class ScrollListFrame(Tkinter.Frame):
-    def __init__(self,master=None,list_of_contained_objects=None,contained_objectbject_maker=None,
+    def __init__(self,main=None,list_of_contained_objects=None,contained_objectbject_maker=None,
                  container_class=ContainedObjectBase,
                  **cnf):
-        Tkinter.Frame.__init__(self, master, **cnf)
+        Tkinter.Frame.__init__(self, main, **cnf)
         if list_of_contained_objects is None:
             self.list = []
         else:
@@ -532,20 +532,20 @@ class LoopParamDialog(tkSimpleDialog.Dialog):
             self.orig_values = None
         return tkSimpleDialog.Dialog.__init__(self, *args, **kw )
 
-    def body(self,master):
-        Tkinter.Label(master,
+    def body(self,main):
+        Tkinter.Label(main,
                       text="Add sequence of automatic variable values",
                       font=("Helvetica",12,"bold"),).grid(row=0,column=0,columnspan=2)
 
-        var_frame = Tkinter.Frame(master,
+        var_frame = Tkinter.Frame(main,
                                   relief=Tkinter.GROOVE,
                                   borderwidth=2)
         var_frame.grid(row=1,column=0)
 
-        sequence_frame = Tkinter.Frame(master)
+        sequence_frame = Tkinter.Frame(main)
         sequence_frame.grid(row=1,column=1)
 
-        rest_dur_frame = Tkinter.Frame(master)
+        rest_dur_frame = Tkinter.Frame(main)
         rest_dur_frame.grid(row=2,column=0,columnspan=2)
 
         # loopable variable frame stuff
@@ -779,16 +779,16 @@ class LoopParamDialog(tkSimpleDialog.Dialog):
         self.sequence_type = None
         self.sequence_manual_string = None
         self.rest_dur = None
-        # call master's destroy method
+        # call main's destroy method
         tkSimpleDialog.Dialog.destroy(self)
 
 def get_server(hostname="",port=7766):
     class ConnectWindow(Tkinter.Frame):
-        def __init__(self,master=None,hostname="",port=7766,**kw):
+        def __init__(self,main=None,hostname="",port=7766,**kw):
             # Allow VisionEgg Tkinter exception window
             VisionEgg.config._Tkinter_used = True
 
-            Tkinter.Frame.__init__(self,master, **kw)
+            Tkinter.Frame.__init__(self,main, **kw)
             self.winfo_toplevel().title("EPhysGUI Connect - Vision Egg")
             current_row = 0
             Tkinter.Message(self,\
@@ -833,9 +833,9 @@ def get_server(hostname="",port=7766):
 
 class GammaFrame(Tkinter.Frame):
     def __init__(self,
-                 master=None,
+                 main=None,
                  ephys_server=None,**kw):
-        Tkinter.Frame.__init__(self,master,**kw)
+        Tkinter.Frame.__init__(self,main,**kw)
         self.winfo_toplevel().title("Gamma - Vision Egg")
         self.ephys_server = ephys_server
 
@@ -990,8 +990,8 @@ class GammaFrame(Tkinter.Frame):
             raise
 
 class ImageSequenceLauncher(Tkinter.Toplevel):
-    def __init__(self,master=None,ephys_server=None,**cnf):
-        Tkinter.Toplevel.__init__(self,master,**cnf)
+    def __init__(self,main=None,ephys_server=None,**cnf):
+        Tkinter.Toplevel.__init__(self,main,**cnf)
         if ephys_server is None:
             raise ValueError("Must specify ephys_server")
         self.ephys_server = ephys_server
@@ -1036,7 +1036,7 @@ class ImageSequenceLauncher(Tkinter.Toplevel):
 
 class AppWindow(Tkinter.Frame):
     def __init__(self,
-                 master=None,
+                 main=None,
                  client_list=None,
                  server_hostname='',
                  server_port=7766,
@@ -1053,7 +1053,7 @@ class AppWindow(Tkinter.Frame):
         VisionEgg.config._Tkinter_used = True
 
         # create myself
-        Tkinter.Frame.__init__(self,master, **cnf)
+        Tkinter.Frame.__init__(self,main, **cnf)
         self.winfo_toplevel().title("EPhysGUI - Vision Egg")
 
         self.client_list = client_list
@@ -1253,7 +1253,7 @@ class AppWindow(Tkinter.Frame):
             # clear old frame
             self.loop_frame.destroy()
             del self.loop_frame
-        self.loop_frame = ScrollListFrame(master=self,
+        self.loop_frame = ScrollListFrame(main=self,
                                           container_class=LoopContainedObject)
         self.loop_frame.grid( **self.loop_frame_cnf )
 
@@ -1587,8 +1587,8 @@ class AppWindow(Tkinter.Frame):
         def process_loops(depth): # recursive processing of loops
 
             class LoopInfoFrame(Tkinter.Frame):
-                def __init__(self, master=None, **kw):
-                    Tkinter.Frame.__init__(self,master,**kw)
+                def __init__(self, main=None, **kw):
+                    Tkinter.Frame.__init__(self,main,**kw)
                     Tkinter.Label(self,
                         text="Doing sequence").grid(row=0,column=0)
                     self.status_tk_var = Tkinter.StringVar()
@@ -1783,8 +1783,8 @@ class AppWindow(Tkinter.Frame):
 
 class BarButton(Tkinter.Menubutton):
     # Taken from Guido van Rossum's Tkinter svkill demo
-        def __init__(self, master=None, **cnf):
-            Tkinter.Menubutton.__init__(self, master, **cnf)
+        def __init__(self, main=None, **cnf):
+            Tkinter.Menubutton.__init__(self, main, **cnf)
             self.pack(side=Tkinter.LEFT)
             self.menu = Tkinter.Menu(self, name='menu', tearoff=0)
             self['menu'] = self.menu

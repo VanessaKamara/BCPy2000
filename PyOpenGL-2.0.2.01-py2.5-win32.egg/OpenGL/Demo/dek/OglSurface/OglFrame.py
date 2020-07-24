@@ -46,11 +46,11 @@ class OglFrame:
 		im.fromstring(pixels)
 		im.save(self.imagename)
 
-	def __init__(self, master=None, redraw=None, *arguments, **keywords):
+	def __init__(self, main=None, redraw=None, *arguments, **keywords):
 		self.imagename="photo.ppm"
-		self.master=master
+		self.main=main
 		self.keywords = keywords
-		self.OglFrame = Frame(self.master, width=320, height=200)
+		self.OglFrame = Frame(self.main, width=320, height=200)
 		self.OglFrame.pack(side = 'top', expand = 1, fill = 'both')
 		self.keywords['double'] = 1
 		self.ogl = Opengl(self.OglFrame, self.keywords)

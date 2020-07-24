@@ -295,7 +295,7 @@ class BackgroundJobManager:
                   '_status_new(), aborting flush.')
             return
 
-        # Remove the finished jobs from the master dict
+        # Remove the finished jobs from the main dict
         jobs_all = self.jobs_all
         for job in self.jobs_comp+self.jobs_dead:
             del(jobs_all[job.num])

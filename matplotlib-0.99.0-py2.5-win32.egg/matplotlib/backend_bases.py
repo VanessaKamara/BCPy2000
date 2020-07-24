@@ -108,7 +108,7 @@ class RendererBase:
                                marker_trans + transforms.Affine2D().translate(x, y),
                                rgbFace)
 
-    def draw_path_collection(self, master_transform, cliprect, clippath,
+    def draw_path_collection(self, main_transform, cliprect, clippath,
                              clippath_trans, paths, all_transforms, offsets,
                              offsetTrans, facecolors, edgecolors, linewidths,
                              linestyles, antialiaseds, urls):
@@ -134,7 +134,7 @@ class RendererBase:
         """
         path_ids = []
         for path, transform in self._iter_collection_raw_paths(
-            master_transform, paths, all_transforms):
+            main_transform, paths, all_transforms):
             path_ids.append((path, transform))
 
         for xo, yo, path_id, gc, rgbFace in self._iter_collection(
@@ -145,7 +145,7 @@ class RendererBase:
             transform = transforms.Affine2D(transform.get_matrix()).translate(xo, yo)
             self.draw_path(gc, path, transform, rgbFace)
 
-    def draw_quad_mesh(self, master_transform, cliprect, clippath,
+    def draw_quad_mesh(self, main_transform, cliprect, clippath,
                        clippath_trans, meshWidth, meshHeight, coordinates,
                        offsets, offsetTrans, facecolors, antialiased,
                        showedges):
@@ -166,18 +166,18 @@ class RendererBase:
             linewidths = np.array([0.0], np.float_)
 
         return self.draw_path_collection(
-            master_transform, cliprect, clippath, clippath_trans,
+            main_transform, cliprect, clippath, clippath_trans,
             paths, [], offsets, offsetTrans, facecolors, edgecolors,
             linewidths, [], [antialiased], [None])
 
-    def _iter_collection_raw_paths(self, master_transform, paths, all_transforms):
+    def _iter_collection_raw_paths(self, main_transform, paths, all_transforms):
         """
         This is a helper method (along with :meth:`_iter_collection`) to make
         it easier to write a space-efficent :meth:`draw_path_collection`
         implementation in a backend.
 
         This method yields all of the base path/transform
-        combinations, given a master transform, a list of paths and
+        combinations, given a main transform, a list of paths and
         list of transforms.
 
         The arguments should be exactly what is passed in to
@@ -198,7 +198,7 @@ class RendererBase:
             path = paths[i % Npaths]
             if Ntransforms:
                 transform = all_transforms[i % Ntransforms]
-            yield path, transform + master_transform
+            yield path, transform + main_transform
 
     def _iter_collection(self, path_ids, cliprect, clippath, clippath_trans,
                          offsets, offsetTrans, facecolors, edgecolors,

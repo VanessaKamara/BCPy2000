@@ -504,7 +504,7 @@ grestore
         ps = '\n'.join(ps_cmd)
         self._draw_ps(ps, gc, rgbFace, fill=False, stroke=False)
 
-    def draw_path_collection(self, master_transform, cliprect, clippath,
+    def draw_path_collection(self, main_transform, cliprect, clippath,
                              clippath_trans, paths, all_transforms, offsets,
                              offsetTrans, facecolors, edgecolors, linewidths,
                              linestyles, antialiaseds, urls):
@@ -512,7 +512,7 @@ grestore
 
         path_codes = []
         for i, (path, transform) in enumerate(self._iter_collection_raw_paths(
-            master_transform, paths, all_transforms)):
+            main_transform, paths, all_transforms)):
             name = 'p%x_%x' % (self._path_collection_id, i)
             ps_cmd = ['/%s {' % name,
                       'newpath', 'translate']

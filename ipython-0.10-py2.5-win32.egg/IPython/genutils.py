@@ -882,7 +882,7 @@ def doctest_reload():
 
       - imports doctest but does NOT reload it (see below).
 
-      - resets its global 'master' attribute to None, so that multiple uses of
+      - resets its global 'main' attribute to None, so that multiple uses of
       the module interactively don't produce cumulative reports.
 
       - Monkeypatches its core test runner method to protect it from IPython's
@@ -901,7 +901,7 @@ def doctest_reload():
     code, but the reload call isn't actually made anymore."""
 
     import doctest
-    doctest.master = None
+    doctest.main = None
     doctest.DocTestRunner.run = dhook_wrap(doctest.DocTestRunner.run)
 
 #----------------------------------------------------------------------------

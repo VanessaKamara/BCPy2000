@@ -110,8 +110,8 @@ class Togl(Widget):
 	"""
 
 
-	def __init__(self, master=None, cnf={}, **kw):
-		Widget.__init__(self, master, 'togl', cnf, kw)
+	def __init__(self, main=None, cnf={}, **kw):
+		Widget.__init__(self, main, 'togl', cnf, kw)
 
 
 	def render(self):
@@ -184,8 +184,8 @@ class RawOpengl(Widget, Misc):
 	by Tom Schwaller"""
 
 
-	def __init__(self, master=None, cnf={}, **kw):
-		Widget.__init__(self, master, 'togl', cnf, kw)
+	def __init__(self, main=None, cnf={}, **kw):
+		Widget.__init__(self, main, 'togl', cnf, kw)
 		self.bind('<Map>', self.tkMap)
 		self.bind('<Expose>', self.tkExpose)
 		self.bind('<Configure>', self.tkExpose)
@@ -229,14 +229,14 @@ University of York, UK
 http://www.yorvic.york.ac.uk/~mjh/
 """
 
-	def __init__(self, master=None, cnf={}, **kw):
+	def __init__(self, main=None, cnf={}, **kw):
 		"""\
 		Create an opengl widget.
 		Arrange for redraws when the window is exposed or when
 		it changes size."""
 
-		#Widget.__init__(self, master, 'togl', cnf, kw)
-		apply(RawOpengl.__init__, (self, master, cnf), kw)
+		#Widget.__init__(self, main, 'togl', cnf, kw)
+		apply(RawOpengl.__init__, (self, main, cnf), kw)
 		self.initialised = 0
 
 		# Current coordinates of the mouse.

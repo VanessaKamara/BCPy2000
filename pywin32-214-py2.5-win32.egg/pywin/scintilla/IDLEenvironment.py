@@ -284,7 +284,7 @@ class TkText:
 		self.marks = {}
 ##	def __getattr__(self, attr):
 ##		if attr=="tk": return self # So text.tk.call works.
-##		if attr=="master": return None # ditto!
+##		if attr=="main": return None # ditto!
 ##		raise AttributeError, attr
 ##	def __getitem__(self, item):
 ##		if item=="tabs":
